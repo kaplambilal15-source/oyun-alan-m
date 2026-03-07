@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Kalp Tıklama Oyunu</title>
+
+<style>
+
+body{
+text-align:center;
+font-family:Arial;
+background:#1e1e2f;
+color:white;
+}
+
+#heart{
+font-size:80px;
+cursor:pointer;
+margin-top:40px;
+}
+
+#gold{
+font-size:80px;
+cursor:pointer;
+display:none;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>❤️ Kalp Tıklama Oyunu</h1>
+
+<h2>Puan: <span id="score">0</span></h2>
+<h2>Süre: <span id="time">30</span></h2>
+
+<div id="heart" onclick="clickHeart()">❤️</div>
+<div id="gold" onclick="goldHeart()">💛</div>
+
+<button onclick="startGame()">Oyunu Başlat</button>
+
+<script>
+
+let score=0
+let time=30
+let game=false
+
+function startGame(){
+
+score=0
+time=30
+game=true
+
+document.getElementById("score").innerText=score
+
+let timer=setInterval(function(){
+
+time--
+document.getElementById("time").innerText=time
+
+if(time<=0){
+
+clearInterval(timer)
+game=false
+alert("Oyun bitti! Puanın: "+score)
+
+}
+
+},1000)
+
+}
+
+function clickHeart(){
+
+if(!game) return
+
+score++
+document.getElementById("score").innerText=score
+
+if(Math.random()<0.2){
+
+showGold()
+
+}
+
+}
+
+function showGold(){
+
+let gold=document.getElementById("gold")
+
+gold.style.display="block"
+
+setTimeout(function(){
+
+gold.style.display="none"
+
+},2000)
+
+}
+
+function goldHeart(){
+
+score+=5
+document.getElementById("score").innerText=score
+document.getElementById("gold").style.display="none"
+
+}
+
+</script>
+
+</body>
+</html>
