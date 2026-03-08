@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Tıklama Oyunu</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-family:Arial;
+background:linear-gradient(135deg,#ff7e5f,#feb47b,#6a11cb,#2575fc);
+background-size:400% 400%;
+animation:bg 10s infinite alternate;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
+#score{
+position:absolute;
+top:30px;
+font-size:40px;
+font-weight:bold;
+}
+
+#button{
+padding:40px 60px;
+font-size:30px;
+border:none;
+border-radius:20px;
+background:white;
+color:black;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+#button:active{
+transform:scale(0.95);
+}
+
+.plus{
+position:absolute;
+font-size:25px;
+font-weight:bold;
+animation:up 1s forwards;
+}
+
+@keyframes up{
+0%{opacity:1;transform:translateY(0);}
+100%{opacity:0;transform:translateY(-80px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="score">Skor: 0</div>
+
+<button id="button">TIKLA</button>
+
+<script>
+
+let score = 0
+
+const button = document.getElementById("button")
+const scoreText = document.getElementById("score")
+
+button.addEventListener("click", function(e){
+
+score++
+scoreText.innerText = "Skor: " + score
+
+const plus = document.createElement("div")
+plus.innerText = "+1"
+plus.className = "plus"
+
+plus.style.left = (e.clientX - 10) + "px"
+plus.style.top = (e.clientY - 10) + "px"
+
+document.body.appendChild(plus)
+
+setTimeout(()=>{
+plus.remove()
+},1000)
+
+})
+
+</script>
+
+</body>
+</html>
